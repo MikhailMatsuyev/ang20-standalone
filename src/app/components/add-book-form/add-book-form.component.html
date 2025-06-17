@@ -1,0 +1,67 @@
+<div class="form-container">
+  <h2>Добавить новую книгу</h2>
+
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="mat-form-field">
+          <mat-label>Название книги</mat-label>
+          <input matInput formControlName="title">
+          @if (bookForm.get('title')?.invalid) {
+            <mat-error>
+              Обязательное поле
+            </mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Автор</mat-label>
+          <input matInput formControlName="author">
+          @if (bookForm.get('author')?.invalid) {
+            <mat-error>
+              Обязательное поле
+            </mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Описание</mat-label>
+          <textarea matInput
+                    formControlName="description"
+                    rows="5"></textarea>
+          @if (bookForm.get('description')?.invalid) {
+            <mat-error style="color: red">
+              Обязательное поле
+            </mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Жанры</mat-label>
+          <mat-select formControlName="genres" multiple>
+            @for (genre of genreOptions;track $index) {
+              <mat-option [value]="genre">
+              {{ genre }}
+            </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-raised-button
+                  color="primary"
+                  type="submit"
+                  [disabled]="bookForm.invalid">
+            Добавить книгу
+          </button>
+
+          <button mat-button
+                  type="button"
+                  routerLink="/">
+            Отмена
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,33 @@
+@if (book) {
+  <div class="details-container">
+    <button mat-button routerLink="/">
+      Назад к каталогу
+    </button>
+
+    <mat-card class="book-details-card">
+      <mat-card-header>
+        <mat-card-title>{{ book.title }}</mat-card-title>
+        <mat-card-subtitle>{{ book.author }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>{{ book.description }}</p>
+
+
+        <div class="genres">
+          @for (genre of book.genres; track $index) {
+            <mat-chip color="primary">
+              {{ genre }}
+            </mat-chip>
+          }
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" routerLink="/">
+          На главную
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+}
