@@ -30,7 +30,6 @@ export class BookListComponent implements OnInit {
   private bookService = inject(BookService);
 
   public ngOnInit(): void {
-    debugger
     this.bookService.books$.subscribe(books => this.books = books);
   }
 
